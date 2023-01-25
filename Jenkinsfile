@@ -86,7 +86,7 @@ pipeline {
 }
 post {
     always {
-        sh "dpcker-compose down"
+        sh "docker-compose down"
         cleanWs()
     }
 }
