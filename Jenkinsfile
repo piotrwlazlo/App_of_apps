@@ -43,7 +43,7 @@ pipeline {
     
         
         
-        stages {
+       
         stage('Deploy application') {
             steps {
                 script {
@@ -56,14 +56,14 @@ pipeline {
                 }
             }
         }
-	}
+	
     stage('Selenium tests') {
         steps {
             sh "pip3 install -r test/selenium/requirements.txt"
             sh "python3 -m pytest test/selenium/frontendTest.py"
         }
     }
-    stege('Run terraform') {
+    stage('Run terraform') {
         steps {
             dir('Terraform'){
                 git branch: 'main', url: 'https://github.com/PiotrWlazlo/terraform'
@@ -74,7 +74,7 @@ pipeline {
     }
 
     }
-    stages {
+    
         stage('Run Ansible') {
                steps {
                    script {
@@ -86,11 +86,12 @@ pipeline {
 				}
 			}
 		}
-	}
-}
-post {
+    }
+    post {
     always {
         sh "docker-compose down"
         cleanWs()
     }
 }
+}
+
