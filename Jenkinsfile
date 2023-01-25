@@ -17,6 +17,18 @@ pipeline {
         string(name: 'frontendDockerTag', defaultValue: '', description: 'Frontend docker image tag')
     }
     stages {
+        stage('Get Code'){
+            steps {
+                checkout scm
+            }
+        }
+
+        stage('Clean running containers') {
+            steps {
+                sh "docker rm -f frontend backend"
+            }
+        }
+        
         stage('Adjust version') {
             steps {
                 script{
@@ -29,16 +41,8 @@ pipeline {
         }
 	
     
-        stage('Get Code'){
-            steps {
-                checkout scm
-            }
-        }
-        stage('Clean running containers') {
-            steps {
-                sh "docker rm -f frontend backend"
-            }
-        }
+        
+        
         stages {
         stage('Deploy application') {
             steps {
