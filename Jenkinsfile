@@ -1,5 +1,5 @@
-def frontendImage="pandaacademy/frontend"
-def backendImage="pandaacademy/backend"
+def frontendImage="pepe3535/frontend"
+def backendImage="pepe3535/backend"
 def backendDockerTag=""
 def frontendDockerTag=""
 def dockerRegistry=""
